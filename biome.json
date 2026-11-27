@@ -1,0 +1,229 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
+  "files": {
+    "ignoreUnknown": false,
+    "includes": [
+      "**/*",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/.tooling",
+      "!**/src-tauri/target",
+      "!**/src-tauri/gen",
+      "!**/src-tauri/icons",
+      "!**/.vscode",
+      "!**/.claude",
+      "!**/package.json",
+      "!**/package-lock.json"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "includes": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.json", "**/*.html"],
+    "formatWithErrors": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 120,
+    "bracketSpacing": true,
+    "expand": "auto"
+  },
+  "linter": {
+    "enabled": true,
+    "domains": {
+      "project": "recommended",
+      "react": "recommended",
+      "test": "recommended"
+    },
+    "rules": {
+      "preset": "recommended",
+      "correctness": {
+        "noUndeclaredDependencies": "error",
+        "noUnusedVariables": "error",
+        "useExhaustiveDependencies": "warn",
+        "noUnresolvedImports": "off"
+      },
+      "performance": {
+        "noDelete": "warn"
+      },
+      "style": {
+        "useForOf": "error",
+        "noCommonJs": "off",
+        "noRestrictedImports": {
+          "level": "error",
+          "options": {
+            "patterns": [
+              {
+                "group": [".", "**/.."],
+                "message": "Do not import from the package barrel file relatively. Import directly from the source file instead."
+              }
+            ]
+          }
+        },
+        "useImportType": {
+          "level": "on",
+          "options": {
+            "style": "separatedType"
+          }
+        },
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": ["kebab-case"],
+            "requireAscii": true
+          }
+        }
+      },
+      "suspicious": {
+        "noEmptyBlockStatements": "error",
+        "noUnassignedVariables": "error",
+        "noUselessEscapeInString": "error",
+        "noConstantBinaryExpressions": "error",
+        "noImportCycles": "error",
+        "noBitwiseOperators": "warn",
+        "noArrayIndexKey": "warn",
+        "noThenProperty": "off"
+      },
+      "complexity": {
+        "useOptionalChain": "off",
+        "useArrowFunction": "error"
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "warn"
+      },
+      "nursery": {
+        "useConsistentFunctionStyle": {
+          "level": "error",
+          "options": {
+            "style": "expression"
+          }
+        },
+        "useReactFunctionComponentDefinition": {
+          "level": "error",
+          "options": {
+            "namedComponents": "arrowFunction"
+          }
+        }
+      }
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              {
+                "type": true,
+                "source": [":NODE:"]
+              },
+              ":BLANK_LINE:",
+              [":NODE:"],
+              ":BLANK_LINE:",
+              {
+                "type": true,
+                "source": ["react", "react/**", "react-*", "react-*/**"]
+              },
+              {
+                "type": true,
+                "source": [":PACKAGE:"]
+              },
+              ":BLANK_LINE:",
+              ["react", "react/**", "react-*", "react-*/**"],
+              [":PACKAGE:"],
+              ":BLANK_LINE:",
+              {
+                "type": true,
+                "source": [":ALIAS:"]
+              },
+              ":BLANK_LINE:",
+              [":ALIAS:"],
+              ":BLANK_LINE:",
+              {
+                "type": true,
+                "source": [":PATH:", "!**/*.css", "!**/*.scss", "!**/*.styles.ts", "!**/*.styles"]
+              },
+              ":BLANK_LINE:",
+              [":PATH:", "!**/*.css", "!**/*.scss", "!**/*.styles.ts", "!**/*.styles"],
+              ":BLANK_LINE:",
+              {
+                "type": true,
+                "source": ["**/*.css", "**/*.scss", "**/*.styles.ts", "**/*.styles"]
+              },
+              ":BLANK_LINE:",
+              ["**/*.css", "**/*.scss", "**/*.styles.ts", "**/*.styles"]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "javascript": {
+    "jsxRuntime": "transparent",
+    "formatter": {
+      "quoteStyle": "single",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "all",
+      "semicolons": "always",
+      "arrowParentheses": "asNeeded"
+    },
+    "linter": {
+      "enabled": true
+    },
+    "assist": {
+      "enabled": true
+    }
+  },
+  "json": {
+    "formatter": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true
+    },
+    "assist": {
+      "enabled": true
+    }
+  },
+  "css": {
+    "formatter": {
+      "enabled": false
+    },
+    "linter": {
+      "enabled": false
+    },
+    "assist": {
+      "enabled": false
+    }
+  },
+  "html": {
+    "formatter": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": false
+    },
+    "assist": {
+      "enabled": false
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.tsx", "**/*.styles.ts", "**/GlobalStyles.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useFilenamingConvention": {
+              "level": "error",
+              "options": {
+                "filenameCases": ["PascalCase", "kebab-case"],
+                "requireAscii": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

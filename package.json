@@ -1,0 +1,62 @@
+{
+  "name": "alexandria",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Desktop app that turns PDF books into key data, structured notes and tests using Claude",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build --bundles app",
+    "tauri": "tauri",
+    "frontend:dev": "vite",
+    "frontend:build": "tsc --noEmit && vite build",
+    "icons": "tauri icon src/resources/icon.svg",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run && cargo test --manifest-path src-tauri/Cargo.toml",
+    "test:web": "vitest run",
+    "test:rust": "cargo test --manifest-path src-tauri/Cargo.toml",
+    "lint": "biome check . && stylelint --allow-empty-input 'src/**/*.styles.ts' 'src/app/theme/GlobalStyles.ts' && cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+    "lint:fix": "biome check --write . && stylelint --fix --allow-empty-input 'src/**/*.styles.ts' 'src/app/theme/GlobalStyles.ts'",
+    "format:rust": "cargo fmt --manifest-path src-tauri/Cargo.toml",
+    "check": "npm run typecheck && npm run lint && npm run test",
+    "clean": "rm -rf dist src-tauri/target",
+    "app:install": "./scripts/install.sh",
+    "app:update": "./scripts/install.sh --update"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/literata": "^5.3.0",
+    "@fontsource-variable/source-serif-4": "^5.3.1",
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@fontsource/merriweather": "^5.3.0",
+    "@tauri-apps/api": "^2.12.5",
+    "@tauri-apps/plugin-dialog": "^2.8.4",
+    "github-slugger": "^2.0.0",
+    "lucide-react": "^1.81.0",
+    "pdfjs-dist": "^6.5.438",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-markdown": "^10.1.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
+    "styled-components": "^6.7.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.14",
+    "@tauri-apps/cli": "^2.12.6",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.3",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "postcss-styled-syntax": "^0.7.4",
+    "stylelint": "^18.1.0",
+    "stylelint-config-recess-order": "^7.10.1",
+    "stylelint-config-standard": "^41.1.0",
+    "typescript": "~6.0.3",
+    "vite": "^8.4.0",
+    "vitest": "^5.1.1"
+  }
+}

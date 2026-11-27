@@ -1,0 +1,13 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Permissions of the main window. App logic goes through Alexandria's own commands; only the open and save file dialogs, window dragging and theming are granted from plugins.",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-start-dragging",
+    "core:window:allow-set-theme",
+    "dialog:allow-open",
+    "dialog:allow-save"
+  ]
+}

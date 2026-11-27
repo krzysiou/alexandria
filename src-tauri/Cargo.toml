@@ -1,0 +1,74 @@
+[package]
+name = "alexandria"
+version = "0.1.0"
+description = "Turn books into structured notes, key data and tests with Claude"
+edition = "2021"
+publish = false
+
+[lib]
+name = "alexandria_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+test = false
+doctest = false
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+anyhow = "1"
+base64 = "0.22"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+fastrand = "2"
+libc = "0.2"
+rusqlite = { version = "0.37", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tauri = { version = "2", features = ["protocol-asset"] }
+tauri-plugin-dialog = "2"
+tokio = { version = "1", features = ["io-util", "macros", "process", "rt-multi-thread", "sync", "time"] }
+uuid = { version = "1", features = ["v4"] }
+
+[[test]]
+name = "storage_paths"
+path = "../tests/backend/storage/paths.rs"
+
+[[test]]
+name = "storage_usage"
+path = "../tests/backend/storage/usage.rs"
+
+[[test]]
+name = "storage_settings"
+path = "../tests/backend/storage/settings.rs"
+
+[[test]]
+name = "library_sections"
+path = "../tests/backend/library/sections.rs"
+
+[[test]]
+name = "library_import"
+path = "../tests/backend/library/import.rs"
+
+[[test]]
+name = "library_search"
+path = "../tests/backend/library/search.rs"
+
+[[test]]
+name = "library_documents"
+path = "../tests/backend/library/documents.rs"
+
+[[test]]
+name = "parsing_budget"
+path = "../tests/backend/parsing/budget.rs"
+
+[[test]]
+name = "study_questions"
+path = "../tests/backend/study/questions.rs"
+
+[[test]]
+name = "study_attempts"
+path = "../tests/backend/study/attempts.rs"
+
+[profile.release]
+codegen-units = 1
+lto = "thin"
+strip = true
